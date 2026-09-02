@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --brand-red: #D71920;
+    --brand-darkred: #9E1117;
+    --brand-black: #090909;
+    --brand-cream: #FFF1E6;
+    --brand-offwhite: #F8F5F0;
+  }
+
+  html {
+    scroll-behavior: auto;
+    background-color: #090909;
+    color: #F8F5F0;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  html.lenis, html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  .lenis.lenis-scrolling iframe {
+    pointer-events: none;
+  }
+
+  /* Custom Red & Dark Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #090909;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #2a2a2e;
+    border-radius: 4px;
+    border: 2px solid #090909;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #D71920;
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    /* removed — no glow */
+  }
+
+  .text-glow-gold {
+    /* removed — no glow */
+  }
+
+  .glass-dark {
+    background: rgba(18, 18, 20, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .glass-card {
+    background: linear-gradient(135deg, rgba(28, 28, 32, 0.7) 0%, rgba(16, 16, 18, 0.85) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+  }
+
+  .glass-red {
+    background: linear-gradient(135deg, rgba(215, 25, 32, 0.2) 0%, rgba(158, 17, 23, 0.05) 100%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(215, 25, 32, 0.3);
+  }
+
+  .noise-bg {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 0);
+    background-size: 24px 24px;
+  }
+}
+
+/* Subtle Film Grain */
+.film-grain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  opacity: 0.025;
+  z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Reduced Motion Fallback */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
